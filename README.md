@@ -34,3 +34,36 @@
 
 - Any language, any platform
 - One of the above problems or both, if you feel like it.
+
+## Solutions for Above
+
+### Prerequisites:
+- Docker (preview) — facing issues while building the image; it works on some machines.
+
+### Setup for Docker run:
+- Build Docker Image: docker build -t my-code-kata .
+- Run Docker image: docker run -it --rm --name my-code-kata my-code-kata
+
+### Local Setup:
+- Python 3.9.x or above
+- Python virtual environment to work with
+- Create a Python virtual environment:
+- Install virtualenv: pip install virtualenv
+- Create the virtual environment: python3.9 -m venv <virtual-environment-name>
+- Activate the virtual environment: source <PATH-TO-YOUR-VIRTUAL-ENV-NAME>/bin/activate
+- Install dependencies: pip install -r requirements.txt
+
+## Problem Statements:
+
+### Problem 1:
+- To run, execute: ./p1-run.sh
+- Input files are located in the Input folder, and outputs will be stored in Output_files/P1/.
+
+### Problem 2:
+
+- To run, execute either: ./p2-run.sh or ./entrypoint.sh
+- Outputs will be stored in Output_files/P2/.
+
+Notes:
+Ensure Docker is properly configured for building images.
+Modify config.ini with appropriate values before running commands if needed.
