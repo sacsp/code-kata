@@ -29,7 +29,7 @@ def split_line_by_fixed_widths(textline='', offsets=[]):
         if idx == len(offsets) - 1:
             continue
         line = re.sub(r"^(.{%d})()" % (n + idx), r"\1%s" % delimiter, line)   
-        print(f"main line : {line}")
+        # print(f"main line : {line}")
         logging.debug(line)
 
     line = [n.strip() if len(n.strip()) > 0 else '_' for n in line.split(delimiter)]

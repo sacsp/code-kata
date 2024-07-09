@@ -11,8 +11,8 @@ echo "RUNNING JOB"
 # executor_memory=10g
 
 # Set the path to the spec file and the input file
-SPEC_FILE="/app/Input_files/spec.json"
-INPUT_FILE="/app/Input_files/input.txt"
+SPEC_FILE="Input_files/spec.json"
+INPUT_FILE="Input_files/input.txt"
 
 # PROJECT: Run the main Python script
 echo ""
