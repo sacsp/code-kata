@@ -15,7 +15,7 @@ echo ""
 echo "$(date)"
 echo "====================================="
 echo "Running pysaprk script for csv to anonymize == Started"
-source ./venv/bin/activate && ./venv/lib/python3.8/site-packages/pyspark/bin/spark-submit --driver-memory ${driver_memory} --executor-memory ${executor_memory} problem-2/generate_csv_spark.py
-source ./venv/bin/activate && ./venv/lib/python3.8/site-packages/pyspark/bin/spark-submit --driver-memory ${driver_memory} --executor-memory ${executor_memory} problem-2/anonymize_spark.py
+source ./venv/bin/activate && ./venv/lib/python3.9/site-packages/pyspark/bin/spark-submit --driver-memory ${driver_memory} --executor-memory ${executor_memory} problem-2/generate_csv_spark.py
+source ./venv/bin/activate && ./venv/lib/python3.9/site-packages/pyspark/bin/spark-submit --driver-memory ${driver_memory} --executor-memory ${executor_memory} problem-2/anonymize_spark.py
 echo "Running pysaprk script for csv to anonymize == Completed"
 echo "*************************************"

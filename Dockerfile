@@ -8,50 +8,61 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 
 # Install Python, JDK 11, and other necessary packages
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
-    openjdk-11-jdk \
-    software-properties-common \
-    python3-virtualenv \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y openjdk-11-jdk python3.9 python3.9-dev python3.9-venv python3-pip python3-wheel build-essential && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install -y openjdk-11-jdk
 
 # Set JAVA_HOME environment variable
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
-# Copy the requirements file
-COPY requirements.txt .
+# Verify JAVA_HOME and Java installation
+# RUN echo "JAVA_HOME is set to $JAVA_HOME" && \
+#     ls -l $JAVA_HOME && \
+#     echo "Java executable path:" && \
+#     which java && \
+#     java -version
+
+# Install PySpark and other Python dependencies
+RUN pip3 install --no-cache-dir pyspark
+
 
 # Create a virtual environment
-RUN python3 -m venv venv
+RUN python3.9 -m venv venv
 
-# Activate the virtual environment and install dependencies
-RUN /bin/bash -c "source venv/bin/activate && pip install --no-cache-dir -r requirements.txt"
+# install requirements
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the entire CODE-KATA directory contents into the container at /app
 COPY . .
 
-# Ensure the Output_files/p1 directory exists
-RUN mkdir -p /app/Output_files/p1
+# Ensure the Output_files/p1 and Output_files/p2 directories exist
+RUN mkdir -p /app/Output_files/p1 /app/Output_files/p2
 
+# Verify installation and environment setup
 RUN echo "Current working directory:" && pwd
 RUN echo "Files in current directory:" && ls -l
 RUN echo "Files in /app/Output_files/p1:" && ls -l /app/Output_files/p1
+RUN echo "Files in /app/Output_files/p2:" && ls -l /app/Output_files/p2
+RUN echo "Java version:" && java -version
+RUN echo "Python version:" && python3 --version
+# RUN echo "PySpark version:" && /bin/bash -c "source venv/bin/activate && python3 -c 'import pyspark; print(pyspark.__version__)'"
 
-# Add a volume for mapping host directory to container directory
-VOLUME ["/app/Output_files/p1/"]
-
-# Set environment variables if needed (optional)
-# ENV CONFIG_FILE=config.ini
+# Add volumes for mapping host directories to container directories
+VOLUME ["/app/Output_files/p1/", "/app/Output_files/p2/"]
 
 # Make the run.sh scripts executable
 RUN chmod +x p1-run.sh
 RUN chmod +x p2-run.sh
 
-# Make port 80 available to the world outside this container (optional)
-EXPOSE 80
+# Copy the entrypoint script
+COPY entrypoint.sh /app/entrypoint.sh
 
-# Run the run.sh script when the container launches
-# ENTRYPOINT ["./run.sh"]
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+# Set the entry point to the entrypoint script
+# ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
