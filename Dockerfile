@@ -33,10 +33,20 @@ RUN /bin/bash -c "source venv/bin/activate && pip install --no-cache-dir -r requ
 # Copy the entire CODE-KATA directory contents into the container at /app
 COPY . .
 
+# Ensure the Output_files/p1 directory exists
+RUN mkdir -p /app/Output_files/p1
+
+RUN echo "Current working directory:" && pwd
+RUN echo "Files in current directory:" && ls -l
+RUN echo "Files in /app/Output_files/p1:" && ls -l /app/Output_files/p1
+
+# Add a volume for mapping host directory to container directory
+VOLUME ["/app/Output_files/p1/"]
+
 # Set environment variables if needed (optional)
 # ENV CONFIG_FILE=config.ini
 
-# Make the run.sh script executable
+# Make the run.sh scripts executable
 RUN chmod +x p1-run.sh
 RUN chmod +x p2-run.sh
 
