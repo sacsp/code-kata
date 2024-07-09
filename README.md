@@ -34,3 +34,38 @@
 
 - Any language, any platform
 - One of the above problems or both, if you feel like it.
+
+
+## solutions 
+- Folder Structure:
+CODE-KATA/
+├── Input_files/
+│   ├── input.txt
+│   └── speck.json
+├── Output_files/
+│   ├── p1
+│   └── p2
+├── problem-1/
+│   ├── main.py
+│   └── test_main.py
+├── problem-2/
+│   ├── generate_csv_spark.py
+│   └── anonymize_spark.py
+├── config.ini
+├── README.MD
+├── requirements.txt
+└── Dockerfile
+
+##
+Prerequisites
+Python3.6.x or above
+Python virtual environment to work with
+
+Activate the virtual environment created earlier by running the following command . <PATH-TO-YOUR-VIRTUAL-ENV-NAME>/bin/activate
+
+Run the following command to install all the dependencies pip install -r requirements.txt
+
+xecution of Programs
+For programs that start with py_* are a general ones. So use python <PATH-TO-PROGRAM>
+
+For programs that start with pyspark_* use spark-submit <PATH-TO-PROGRAM>
