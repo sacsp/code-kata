@@ -39,6 +39,7 @@
 
 ### Prerequisites:
 - Docker (preview)
+## Docker image : docker pull patilsac/pyspark-code-exercise:latest
 
 ### Setup for Docker run:
 - To build the Docker image: docker build -t my-code-kata .
