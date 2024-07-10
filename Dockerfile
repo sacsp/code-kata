@@ -37,7 +37,6 @@ RUN wget -O /tmp/spark.tgz https://archive.apache.org/dist/spark/spark-${SPARK_V
 # Set SPARK_HOME environment variable
 ENV SPARK_HOME=/opt/spark
 ENV PATH="$SPARK_HOME/bin:$PATH"
-
 ENV PYSPARK_PYTHON=python3
 
 
@@ -58,14 +57,6 @@ COPY requirements.txt .
 RUN venv/bin/pip install --no-cache-dir -r requirements.txt
 # RUN pip3 install --no-cache-dir -r requirements.txt
 
-# RUN apt-get update \
-#     && apt-get install -y \
-#     && pip install --no-cache-dir -r requirements.txt \
-#     && apt-get clean \
-#     && rm -rf /var/lib/apt/lists/*
-
-# RUN pip3 install Faker
-
 # Copy the entire CODE-KATA directory contents into the container at /app
 COPY . /app
 WORKDIR /app
@@ -80,7 +71,6 @@ RUN echo "Files in /app/Output_files/p1:" && ls -l /app/Output_files/p1
 RUN echo "Files in /app/Output_files/p2:" && ls -l /app/Output_files/p2
 RUN echo "Java version:" && java -version
 RUN echo "Python version:" && python3 --version
-# RUN echo "PySpark version:" && /bin/bash -c "source venv/bin/activate && python3 -c 'import pyspark; print(pyspark.__version__)'"
 
 # Add volumes for mapping host directories to container directories
 VOLUME ["/app/Output_files/p1/", "/app/Output_files/p2/"]

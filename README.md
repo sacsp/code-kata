@@ -38,12 +38,16 @@
 ## Solutions for Above
 
 ### Prerequisites:
-- Docker (preview) — facing issues while building the image; it works on some machines.
+- Docker (preview)
 
 ### Setup for Docker run:
-- Build Docker Image: docker build -t my-code-kata .
-- Run Docker image: docker run -it --rm --name my-code-kata my-code-kata
-
+- To build the Docker image: docker build -t my-code-kata .
+- To run the Docker container: docker run -it --rm --name my-code-kata my-code-kata
+- To run the Docker container with output files: docker run -it --name my-code-kata -v /path/on/host/p1:/app/Output_files/p1 -v /path/on/host/p2:/app/Output_files/p2 my-code-kata
+### to run file
+ ./p1-run.sh
+ ./p2-run.sh
+ 
 ### Local Setup:
 - Python 3.9.x or above
 - Python virtual environment to work with
