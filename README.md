@@ -44,7 +44,7 @@
 - To build the Docker image: docker build -t my-code-kata .
 - To run the Docker container: docker run -it --rm --name my-code-kata my-code-kata
 - To run the Docker container with output files: docker run -it --name my-code-kata -v /path/on/host/p1:/app/Output_files/p1 -v /path/on/host/p2:/app/Output_files/p2 my-code-kata
-### to run file
+### to run files
  ./p1-run.sh
  ./p2-run.sh
  
